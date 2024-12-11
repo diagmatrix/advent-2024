@@ -1,10 +1,14 @@
 #ifndef _UTILS_HPP_
 #define _UTILS_HPP_
 
+#include <string.h>
 #include <string>
 #include <vector>
 #include <fstream>
 #include <iostream>
+
+typedef std::vector<std::vector<int> > int_matrix;
+const char* BLANK = " ";
 
 std::vector<std::string> parse_file(const std::string& path) {
     std::vector<std::string> lines;    
@@ -43,6 +47,43 @@ std::vector<std::string> split(const std::string& txt, const char ch)
     strs.push_back( txt.substr( initialPos, std::min( pos, txt.size() ) - initialPos + 1 ) );
 
     return strs;
+}
+
+int_matrix parse_input(const std::string& path) { // Only works for one space
+    int_matrix parsed_input;
+
+    std::vector<std::string> lines = parse_file(path);
+    if (lines.empty()) {
+        return parsed_input;
+    }
+
+    // Parse lines
+    for (const auto& line: lines) {
+        std::vector<int> parsed_line;
+        std::vector<std::string> tokens = split(line, ' ');
+        for (const auto& token: tokens) {
+            parsed_line.push_back(std::stoi(token));
+        }
+        parsed_input.push_back(parsed_line);
+    }
+
+    return parsed_input;
+}
+
+void print_matrix(const int_matrix& m) {
+    for (const auto& row: m) {
+        for (const auto& num: row) {
+            std::cout << num << " "; 
+        }
+        std::cout << std::endl;
+    }
+}
+
+void print_array(const std::vector<int>& a) {
+    for (const auto& elem: a) {
+        std::cout << elem << " ";
+    }
+    std::cout << std::endl;
 }
 
 #endif // _UTILS_HPP_
