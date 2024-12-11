@@ -10,6 +10,7 @@ neat stuff :)
 | **Day** | **Solution** | **Stars** |
 |:-------:|--------------|-----------|
 | 1 | [day 1](src/day_1.cpp) | 2/2 |
+| 2 | [day 2](src/day_2.cpp) | 2/2 |
 
 ## 
 
