@@ -1,9 +1,24 @@
-all: day_1 day_2
+CXX := g++
+CXXFLAGS := -Wall -Wextra -O2
+SRC_DIR := src
+BIN_DIR := bin
 
-day_1:
-	@echo "Compiling solution for day 1..."
-	g++ src/day_1.cpp src/utils.hpp -o bin/solution_1
+DAYS := 1 2
+SOURCES := $(addprefix $(SRC_DIR)/day_, $(addsuffix .cpp, $(DAYS)))
+OUTPUTS := $(addprefix $(BIN_DIR)/solution_, $(DAYS))
 
-day_2:
-	@echo "Compiling solution for day 2..."
-	g++ src/day_2.cpp src/utils.hpp -o bin/solution_2
+.PHONY: all
+all: $(OUTPUTS)
+
+$(BIN_DIR)/solution_%: $(SRC_DIR)/day_%.cpp $(SRC_DIR)/utils.hpp | $(BIN_DIR)
+	@echo "Compiling solution for day $*..."
+	$(CXX) $(CXXFLAGS) $< $(SRC_DIR)/utils.hpp -o $@
+
+$(BIN_DIR):
+	@echo "Creating directory for binaries..."
+	@mkdir -p $@
+
+.PHONY: clean
+clean:
+	@echo "Cleaning up..."
+	rm -rf $(BIN_DIR)
