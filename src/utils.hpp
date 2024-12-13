@@ -8,7 +8,6 @@
 #include <iostream>
 
 typedef std::vector<std::vector<int> > int_matrix;
-const char* BLANK = " ";
 
 std::vector<std::string> parse_file(const std::string& path) {
     std::vector<std::string> lines;    
