@@ -3,7 +3,7 @@ CXXFLAGS := -Wall -Wextra -O2
 SRC_DIR := src
 BIN_DIR := bin
 
-DAYS := 1 2
+DAYS := 1 2 3
 SOURCES := $(addprefix $(SRC_DIR)/day_, $(addsuffix .cpp, $(DAYS)))
 OUTPUTS := $(addprefix $(BIN_DIR)/solution_, $(DAYS))
 
